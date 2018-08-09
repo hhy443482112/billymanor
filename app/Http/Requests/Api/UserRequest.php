@@ -36,8 +36,8 @@ class UserRequest extends FormRequest
                     // 'email' => 'required|email|unique:users',
                     // 'password' => 'required|string|min:6',
 
-                    'phone' => 'required_without:email',
-                    'email' => 'required_without:phone',
+                    // 'phone' => 'required_without:email',
+                    // 'email' => 'required_without:phone',
                 ];
                 break;
             case 'PATCH':
