@@ -31,6 +31,14 @@ class UserRequest extends FormRequest
                     'email' => 'required|email|unique:users',
                     'password' => 'required|string|min:6',
                 ];
+                break;
+            case 'PATCH':
+                $userId = \Auth::guard('api')->id();
+                return [
+                    'name' => 'between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,',
+                    'email' => 'email',
+                ];
+                break;
         }
         
     }
