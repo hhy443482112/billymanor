@@ -39,7 +39,9 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    // 开启调试模式
+    // 'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,7 +106,8 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'zkr5sDOHzhnAGyjaaQ/sgm4ORwvGNdI8DB5GX5LtU7M='),
+    // 'key' => env('APP_KEY', 'zkr5sDOHzhnAGyjaaQ/sgm4ORwvGNdI8DB5GX5LtU7M='),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
