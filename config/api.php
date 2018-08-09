@@ -57,7 +57,8 @@ return [
     |
     */
 
-    'prefix' => env('API_PREFIX', null),
+    // 'prefix' => env('API_PREFIX', null),
+    'prefix' => env('API_PREFIX', 'api'),
 
     /*
     |--------------------------------------------------------------------------
