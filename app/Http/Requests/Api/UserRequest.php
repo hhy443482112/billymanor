@@ -63,8 +63,8 @@ class UserRequest extends FormRequest
             // 'password.required' => '密码不能为空',
             // 'password.string' => '密码必须为字符',
             // 'password.min' => '密码必须超过6个字符',
-            'phone.required_without' => '手机号和邮箱必须有一个不为空',
-            'email.required_without' => '手机号和邮箱必须有一个不为空',
+            // 'phone.required_without' => '手机号和邮箱必须有一个不为空',
+            // 'email.required_without' => '手机号和邮箱必须有一个不为空',
         ];
         
     }
