@@ -17,7 +17,7 @@ class AuthorizationsController extends Controller
         filter_var($username, FILTER_VALIDATE_EMAIL) ?
             $credentails['email'] = $username :
             $credentails['phone'] = $username;
-        
+
         $credentails['password'] = $request->password;
 
         if (!$token = \Auth::guard('api')->attempt($credentails)) {
