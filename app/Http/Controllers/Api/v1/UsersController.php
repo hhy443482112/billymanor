@@ -15,10 +15,14 @@ class UsersController extends Controller
 {
     public function store(UserRequest $request)
     {
+        $phone = $request->phone;
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' => bcrypt($request->password),
+            
         ]);
 
         // return $this->response->created();

@@ -27,16 +27,21 @@ class UserRequest extends FormRequest
         switch($this->method()) {
             case 'POST':
                 return [
-                    'name' => '',
-                    'email' => '',
-                    'password' => '',
+                    // 'name' => 'required|string|between:3,25',
+                    // 'phone' => [
+                    //     'required',
+                    //     'regex:/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\d{8}$/',
+                    //     'unique:users'
+                    // ]
+                    // 'email' => 'required|email|unique:users',
+                    // 'password' => 'required|string|min:6',
                 ];
                 break;
             case 'PATCH':
                 $userId = \Auth::guard('api')->id();
                 return [
-                    'name' => '',
-                    'email' => '',
+                    // 'name' => 'between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,',
+                    // 'email' => 'email',
                 ];
                 break;
         }
