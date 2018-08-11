@@ -138,10 +138,12 @@ return [
     */
 
     'errorFormat' => [
-        'message' => ':message',
+        // 'message' => ':message',
+        'ResultMessage' => ':message',
         'errors' => ':errors',
         'code' => ':code',
-        'status_code' => ':status_code',
+        // 'status_code' => ':status_code',
+        'ResultCode' => ':status_code',
         'debug' => ':debug',
     ],
 

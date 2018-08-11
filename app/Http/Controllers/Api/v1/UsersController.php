@@ -17,12 +17,15 @@ class UsersController extends Controller
     {
         $phone = $request->phone;
 
+        // if ($user->updated_at > app('request')->get('last_updated')) {
+        //     throw new Symfony\Component\HttpKernel\Exception\HttpException('User was updated prior to your request.');
+        // }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => bcrypt($request->password),
-            
         ]);
 
         // return $this->response->created();
@@ -30,9 +33,11 @@ class UsersController extends Controller
         return $this->response->item($user, new UserTransformer())
         // meta 内返回 token
             ->setMeta([
-                'access.token' => \Auth::guard('api')->fromUser($user),
+                'access_token' => \Auth::guard('api')->fromUser($user),
+                // 'ResultMessage' => \Auth::guard('api')->fromUser($user),
                 'token_type' => 'Bearer',
-                'expires_in' => \Auth::guard('api')->factory()->getTTL() *60
+                'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60
+                // 'ResultCode' => setStatusCode(201)
             ])
         // 返回状态码
             ->setStatusCode(201);

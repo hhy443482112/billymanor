@@ -50,4 +50,25 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+    
+    // public function convertValidationExceptionToResponse(ValidationException $e, $request)
+    // {
+    //     $data = $e->validator->getMessageBag();
+    //     $msg = collect($data)->first();
+    //     if(is_array($msg)) {
+    //         $msg = $msg[0];
+    //     }
+    //     return ['code'=> -1,'msg'=>$msg];
+    // }
+
+    // public function convertValidationExceptionToResponse(ValidationException $exception, $request)
+    // {
+    //     $data = $exception->validator->getMessageBag();
+    //     $msg = collect($data)->first();
+    //     if(is_array($msg)){
+    //         $msg = $msg[0];
+    //     }
+    //     return ['code'=> -1,'msg'=>$msg];
+    // }
 }
