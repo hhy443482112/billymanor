@@ -17,7 +17,6 @@ class UserTransformer extends TransformerAbstract
             'email' => $user->email,
             'created_at' => $user->created_at->toDateTimeString(),
             'updated_at' => $user->updated_at->toDateTimeString(),
-            // 'ResultCode' => $user->setStatusCode(201),
         ];
     }
 }

@@ -27,7 +27,8 @@ class AuthorizationsController extends Controller
         $credentails['password'] = $request->password;
 
         if (!$token = \Auth::guard('api')->attempt($credentails)) {
-            return $this->response->errorUnauthorized('用户名或密码错误');
+            return response()->json(['ResultMessage' => '用户名或密码错误', 'ResultCode' => 401], 401);
+            // return $this->response->errorUnauthorized('用户名或密码错误');
         }
 
         // return $this->response->array([
