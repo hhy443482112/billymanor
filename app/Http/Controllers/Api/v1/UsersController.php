@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 
 use App\Models\User;
+use App\Models\Image;
 // use Auth;
 // use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -74,7 +75,13 @@ class UsersController extends Controller
     {
         $user = $this->user();
 
-        $attributes = $request->only(['name', 'email', 'avatar']);
+        $attributes = $request->only(['name', 'email', 'introduction']);
+
+        if ($request->avatar_image_id) {
+            $image = Image::find($request->avatar_image_id);
+    
+            $attributes['avatar'] = $image->path;
+        }
 
         $user->update($attributes);
 
@@ -86,8 +93,14 @@ class UsersController extends Controller
         ], 200);
     }
 
-    public function me()
+    public function me(Request $request)
     {
-        return $this->response->item($this->user(), new UserTransformer());
+        $user = $this->user;
+        // return $this->response->item($this->user(), new UserTransformer());
+        return response([
+            'ResultCode' => 200,
+            'ResultMessage' => '获取成功',
+            'data' => $user
+        ], 200);
     }
 }
