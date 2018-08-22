@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         //     return app('App\Exceptions\Handler')->render($request, $exception);
         // });
         \App\Models\User::observe(\App\Observers\UserObserver::class);
+        \App\Models\Topic::observe(\App\Observers\TopicObserver::class);
 
         \Carbon\Carbon::setLocale('zh');
     }
