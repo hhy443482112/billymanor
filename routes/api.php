@@ -33,6 +33,9 @@ $api->version('v1', [
     //     'middleware' => 'api.throttle',
     // ], function($api) {
         // 游客可以访问的接口
+        // 帖子分类列表
+        $api->get('categories', 'CategoriesController@index')
+            ->name('api.categories.index');
         // 用户注册
         $api->post('users', 'UsersController@store')
             ->name('api.users.store');
