@@ -27,8 +27,12 @@ class AuthorizationsController extends Controller
         $credentails['password'] = $request->password;
 
         if (!$token = \Auth::guard('api')->attempt($credentails)) {
-            return response()->json(['ResultMessage' => '用户名或密码错误', 'ResultCode' => 401], 401);
-            // return $this->response->errorUnauthorized('用户名或密码错误');
+            return $this->response->errorUnauthorized('用户名或密码错误');
+            
+            // return response()->json([
+            //     'ResultMessage' => '用户名或密码错误',
+            //     'ResultCode' => 401
+            // ], 401);
         }
 
         // return $this->response->array([
@@ -37,13 +41,29 @@ class AuthorizationsController extends Controller
             // 'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60,
         // ])->setStatusCode(201);
 
-        return $this->respondWithToken($token)->setStatusCode(201);
+        // return $this->respondWithToken($token)->setStatusCode(201);
+        return response([
+            'ResultCode' => 200,
+            'ResultMessage' => '登录成功',
+            'meta' => array(
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60
+            )], 200);
     }
 
     public function update()
     {
         $token = Auth::guard('api')->refresh();
-        return $this->respondWithToken($token);
+        // return $this->respondWithToken($token);
+        return response([
+            'ResultCode' => 200,
+            'ResultMessage' => '刷新成功',
+            'meta' => array(
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60
+            )], 200);
     }
 
     public function destroy()
@@ -52,13 +72,13 @@ class AuthorizationsController extends Controller
         return $this->response->noContent();
     }
 
-    // 抽出来简单封装
-    public function respondWithToken($token)
-    {
-        return $this->response->array([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60
-        ]);
-    }
+    // // 抽出来简单封装
+    // public function respondWithToken($token)
+    // {
+    //     return $this->response->array([
+    //         'access_token' => $token,
+    //         'token_type' => 'Bearer',
+    //         'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60
+    //     ]);
+    // }
 }

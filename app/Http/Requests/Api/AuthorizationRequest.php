@@ -29,4 +29,11 @@ class AuthorizationRequest extends FormRequest
             // 'password' => 'required|string|min:6',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            // 'password.min' => '密码不能少于6位数'
+        ];
+    }
 }

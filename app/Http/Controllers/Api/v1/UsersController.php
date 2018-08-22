@@ -33,18 +33,27 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        return response([
-            'ResultCode' => 201,
+        // return response([
+        //     'ResultCode' => 201,
+        //     'ResultMessage' => '注册成功',
+        //     // 'status' => 201,
+        //     'data' => $user,
+        //     'meta' => array([
+        //         'access_token' => \Auth::guard('api')->fromUser($user),
+        //         'token_type' => 'Bearer',
+        //         'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60,
+        //     ]),
+        // ], 201);
+
+        return response()->json([
+            'ResultCode' => 200,
             'ResultMessage' => '注册成功',
-            // 'status' => 201,
             'data' => $user,
-            'meta' => array([
+            'meta' => array(
                 'access_token' => \Auth::guard('api')->fromUser($user),
-                // 'ResultMessage' => \Auth::guard('api')->fromUser($user),
                 'token_type' => 'Bearer',
                 'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60,
-            ]),
-        ], 201);
+            )], 200);
 
         // return response()->json(['message' => 'Successfully logged out']);
         // return $this->response->created();
@@ -54,7 +63,6 @@ class UsersController extends Controller
         // // meta 内返回 token
         //     ->setMeta([
         //         'access_token' => \Auth::guard('api')->fromUser($user),
-        //         // 'ResultMessage' => \Auth::guard('api')->fromUser($user),
         //         'token_type' => 'Bearer',
         //         'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60,
         //     ])
@@ -66,11 +74,16 @@ class UsersController extends Controller
     {
         $user = $this->user();
 
-        $attributes = $request->only(['name', 'email']);
+        $attributes = $request->only(['name', 'email', 'avatar']);
 
         $user->update($attributes);
 
-        return $this->response->item($user, new UserTransformer());
+        // return $this->response->item($user, new UserTransformer());
+        return response()->json([
+            'ResultCode' => 200,
+            'ResultMessage' => '更新成功',
+            'data' => $user
+        ], 200);
     }
 
     public function me()
