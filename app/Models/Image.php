@@ -10,6 +10,6 @@ class Image extends Model
 
     public function user()
     {
-        return $this->belonsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }
