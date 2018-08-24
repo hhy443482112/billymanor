@@ -69,7 +69,11 @@ class AuthorizationsController extends Controller
     public function destroy()
     {
         Auth::guard('api')->logout();
-        return $this->response->noContent();
+        // return $this->response->noContent();
+        return response([
+            'ResultCode' => 200,
+            'ResultMessage' => '删除成功',
+        ], 200);
     }
 
     // // 抽出来简单封装
