@@ -13,7 +13,7 @@ class UserObserver
     {
         // 这样写扩展性更高，只有空的时候才指定默认头像
         if (empty($user->avatar)) {
-            $user->avatar = 'https://www.pixiv.net/member_illust.php?mode=medium&illust_id=19394052';
+            $user->avatar = 'https://bihlibihli.herokuapp.com/uploads/images/avatars/default/19394052_p0.jpg';
         }
     }
 }
